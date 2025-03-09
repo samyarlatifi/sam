@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انتخاب رنگ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        #colorPicker {
+            margin: 20px 0;
+        }
+        #colorCode {
+            font-size: 18px;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        #confirmButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>لطفا رنگ مورد نظر خود را انتخاب کنید:</h1>
+    <input type="color" id="colorPicker" value="#ff0000">
+    <br>
+    <div id="colorCode">#FF0000</div>
+    <button id="confirmButton" onclick="copyColorCode()">کپی کد رنگ</button>
+
+    <script>
+        const colorPicker = document.getElementById("colorPicker");
+        const colorCode = document.getElementById("colorCode");
+
+        // بروزرسانی کد HEX هنگام تغییر رنگ
+        colorPicker.addEventListener("input", () => {
+            colorCode.textContent = colorPicker.value.toUpperCase();
+        });
+
+        // کپی کردن کد HEX
+        function copyColorCode() {
+            const code = colorCode.textContent;
+            navigator.clipboard.writeText(code)
+                .then(() => {
+                    alert("کد رنگ کپی شد: " + code);
+                })
+                .catch(() => {
+                    alert("خطا در کپی کردن کد رنگ.");
+                });
+        }
+    </script>
+</body>
+</html>
